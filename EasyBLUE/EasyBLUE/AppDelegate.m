@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "SearchBlue.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    SearchBlue* _mainPage = [[SearchBlue alloc] init];
+    
+    UINavigationController* _root = [[UINavigationController alloc] initWithRootViewController:_mainPage];
+    
+    self.window.rootViewController = _root;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

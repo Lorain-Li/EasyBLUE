@@ -11,6 +11,7 @@
 		1407F9431DD37408005D11AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F9421DD37408005D11AA /* AppDelegate.m */; };
 		1407F94B1DD37409005D11AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1407F94A1DD37409005D11AA /* Assets.xcassets */; };
 		1407F94E1DD37409005D11AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1407F94C1DD37409005D11AA /* LaunchScreen.storyboard */; };
+		1407F9571DD37674005D11AA /* SearchBlue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F9561DD37674005D11AA /* SearchBlue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,8 @@
 		1407F94A1DD37409005D11AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1407F94D1DD37409005D11AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1407F94F1DD37409005D11AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1407F9551DD37674005D11AA /* SearchBlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBlue.h; sourceTree = "<group>"; };
+		1407F9561DD37674005D11AA /* SearchBlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBlue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,8 @@
 			children = (
 				1407F9411DD37408005D11AA /* AppDelegate.h */,
 				1407F9421DD37408005D11AA /* AppDelegate.m */,
+				1407F9551DD37674005D11AA /* SearchBlue.h */,
+				1407F9561DD37674005D11AA /* SearchBlue.m */,
 				1407F94A1DD37409005D11AA /* Assets.xcassets */,
 				1407F94C1DD37409005D11AA /* LaunchScreen.storyboard */,
 				1407F94F1DD37409005D11AA /* Info.plist */,
@@ -143,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1407F9431DD37408005D11AA /* AppDelegate.m in Sources */,
+				1407F9571DD37674005D11AA /* SearchBlue.m in Sources */,
 				1407F9401DD37408005D11AA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
