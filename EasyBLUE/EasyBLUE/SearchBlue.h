@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreBluetooth/CoreBluetooth.h>
+#import "Bluetooth.h"
 @interface SearchBlue : UIViewController
-<UITableViewDelegate,UITableViewDataSource,CBCentralManagerDelegate,CBPeripheralDelegate>
+<UITableViewDelegate,UITableViewDataSource,BluetoothDelegate>
 {
-    NSMutableArray*     _blelist;
-    CBCentralManager*   _manager;
-    CBPeripheral*       _peripheral;
     UITableView*        _bletabview;
+    Bluetooth*          _ble;
 }
 @end
