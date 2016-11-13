@@ -35,7 +35,7 @@
 - (void) startScan;
 - (void) stopScan;
 - (void) clearnlist;
-
+- (void) connectToPeripheral:(CBPeripheral*)peripheral;
 
 - (instancetype) initWithDelegate:(id<BluetoothDelegate>)delegate;
 @end

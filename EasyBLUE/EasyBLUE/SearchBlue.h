@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Bluetooth.h"
+#import "ConnectedBlue.h"
 @interface SearchBlue : UIViewController
 <UITableViewDelegate,UITableViewDataSource,BluetoothDelegate>
 {

@@ -65,5 +65,20 @@
     }
 }
 
+-(void)connectToPeripheral:(CBPeripheral *)peripheral
+{
+    [_manager connectPeripheral:peripheral options:nil];
+}
+
+
+-(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    
+}
+
+-(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
+{
+    NSLog(@"%@",peripheral.services);
+}
 
 @end
