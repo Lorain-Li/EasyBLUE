@@ -22,7 +22,7 @@
 
 - (void) startScan
 {
-    [self.manager scanForPeripheralsWithServices:nil options:nil];
+    [self.manager scanForPeripheralsWithServices:nil options:[NSDictionary dictionaryWithObjectsAndKeys:@"CBCentralManagerScanOptionAllowDuplicatesKey",@"TRUE", nil]];
 }
 
 - (void) stopScan
@@ -59,6 +59,8 @@
         }
     }
     if (norepeat) {
+        NSLog(@"%@",peripheral.identifier);
+        NSLog(@"%@",advertisementData);
         [self.bluelist addObject:peripheral];
         [self.advlist addObject:advertisementData];
         [self.delegate didDiscoverNewPeripheral:peripheral];
@@ -67,18 +69,34 @@
 
 -(void)connectToPeripheral:(CBPeripheral *)peripheral
 {
-    [_manager connectPeripheral:peripheral options:nil];
+    [self stopScan];
+    self.primaryService = [[NSMutableArray alloc] init];
+    [self.manager connectPeripheral:peripheral options:[NSDictionary dictionaryWithObjectsAndKeys:@"CBConnectPeripheralOptionNotifyOnDisconnectionKey", @"TRUE",nil]];
 }
 
 
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    
+    NSLog(@"succssed");
+    self.slave = peripheral;
+    self.slave.delegate = self;
+    [self.slave discoverServices:nil];
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
     NSLog(@"%@",peripheral.services);
+    for (CBService *service in peripheral.services) {
+        [self.primaryService addObject:service.UUID.UUIDString];
+        [peripheral discoverCharacteristics:nil forService:service];
+    }
 }
 
+-(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(nonnull CBService *)service error:(nullable NSError *)error
+{
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        [peripheral setNotifyValue:TRUE forCharacteristic:characteristic];
+        NSLog(@"%@",characteristic.UUID.UUIDString);
+    }
+}
 @end

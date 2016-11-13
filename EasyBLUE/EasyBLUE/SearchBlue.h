@@ -11,8 +11,8 @@
 #import "ConnectedBlue.h"
 @interface SearchBlue : UIViewController
 <UITableViewDelegate,UITableViewDataSource,BluetoothDelegate>
-{
-    UITableView*        _bletabview;
-    Bluetooth*          _ble;
-}
+
+@property (retain,nonatomic) UITableView    *bluetab;
+@property (retain,nonatomic) Bluetooth      *blue;
+
 @end

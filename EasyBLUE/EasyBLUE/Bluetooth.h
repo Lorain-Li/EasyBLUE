@@ -31,11 +31,14 @@
 @property (retain,nonatomic) NSMutableArray     *bluelist;
 @property (retain,nonatomic) NSMutableArray     *advlist;
 @property (retain,nonatomic) CBCentralManager   *manager;
-@property (retain,nonatomic) CBPeripheral       *peripheral;
+@property (retain,nonatomic) CBPeripheral       *slave;
+@property (retain,nonatomic) NSMutableArray     *primaryService;
+@property (retain,nonatomic) NSMutableArray     *services;
 - (void) startScan;
 - (void) stopScan;
 - (void) clearnlist;
-- (void) connectToPeripheral:(CBPeripheral*)peripheral;
+
+-(void)connectToPeripheral:(CBPeripheral*)peripheral;
 
 - (instancetype) initWithDelegate:(id<BluetoothDelegate>)delegate;
 @end

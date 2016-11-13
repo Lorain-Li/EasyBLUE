@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Bluetooth.h"
 @interface ConnectedBlue : UIViewController
-
+<UITableViewDelegate,UITableViewDataSource,BluetoothDelegate>
+@property (retain,nonatomic) UITableView* detailtab;
+@property (retain,nonatomic) Bluetooth* blue;
 @end

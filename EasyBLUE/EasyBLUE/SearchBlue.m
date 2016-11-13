@@ -23,10 +23,10 @@
     NSInteger _sx = [[UIScreen mainScreen] bounds].size.width;
     NSInteger _sy = [[UIScreen mainScreen] bounds].size.height;
     
-    _ble = [[Bluetooth alloc] initWithDelegate:self];
-    _bletabview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _sx, _sy) style:UITableViewStyleGrouped];
-    _bletabview.delegate = self;
-    _bletabview.dataSource = self;
+    self.blue = [[Bluetooth alloc] initWithDelegate:self];
+    self.bluetab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _sx, _sy) style:UITableViewStyleGrouped];
+    self.bluetab.delegate = self;
+    self.bluetab.dataSource = self;
     
     UIBarButtonItem* _startscan = [[UIBarButtonItem alloc] initWithTitle:@"start" style:UIBarButtonItemStylePlain target:self action:@selector(pressedBarButton:)];
     UIBarButtonItem* _stopscan = [[UIBarButtonItem alloc] initWithTitle:@"stop" style:UIBarButtonItemStylePlain target:self action:@selector(pressedBarButton:)];
@@ -34,7 +34,7 @@
     self.navigationItem.leftBarButtonItem = _startscan;
     self.navigationItem.rightBarButtonItem = _stopscan;
     
-    [self.view addSubview:_bletabview];
+    [self.view addSubview:self.bluetab];
 }
 
 - (void)bluetoothIsReady
@@ -46,20 +46,20 @@
 {
     [btn setEnabled:FALSE];
     if (btn == self.navigationItem.leftBarButtonItem) {
-        [_ble clearnlist];
-        [_ble startScan];
+        [self.blue clearnlist];
+        [self.blue startScan];
         [self.navigationItem.rightBarButtonItem setEnabled:TRUE];
     }
     else
     {
-        [_ble stopScan];
+        [self.blue stopScan];
         [self.navigationItem.leftBarButtonItem setEnabled:TRUE];
     }
 }
 
 -(void)didDiscoverNewPeripheral:(CBPeripheral *)peripheral
 {
-    [_bletabview reloadData];
+    [self.bluetab reloadData];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,13 +69,13 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _ble.bluelist.count;
+    return self.blue.bluelist.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CBPeripheral* tmpblue = [_ble.bluelist objectAtIndex:indexPath.row];
-    UITableViewCell* _cell = [_bletabview dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@",tmpblue.identifier]];
+    CBPeripheral* tmpblue = [self.blue.bluelist objectAtIndex:indexPath.row];
+    UITableViewCell* _cell = [self.bluetab dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@",tmpblue.identifier]];
     if (_cell == nil) {
         _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:[NSString stringWithFormat:@"%@",tmpblue.identifier]];
         if (tmpblue.name == nil) {
@@ -92,7 +92,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSLog(@"%@",[self.blue.bluelist objectAtIndex:indexPath.row]);
+    [self.blue connectToPeripheral:[self.blue.bluelist objectAtIndex:indexPath.row]];
+    ConnectedBlue* detail = [[ConnectedBlue alloc] init];
+    detail.blue = self.blue;
+    [self.navigationController pushViewController:detail animated:TRUE];
 }
 
 - (void)didReceiveMemoryWarning {
