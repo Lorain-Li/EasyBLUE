@@ -17,6 +17,7 @@
     self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     self.bluelist = [[NSMutableArray alloc] init];
     self.advlist = [[NSMutableArray alloc] init];
+    self.RSSIs = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -54,6 +55,7 @@
     for (NSInteger i = 0; i < self.bluelist.count; i++) {
         CBPeripheral* tmpblue = [self.bluelist objectAtIndex:i];
         if (peripheral.identifier == tmpblue.identifier) {
+            [self.RSSIs setObject:RSSI atIndexedSubscript:i];
             norepeat = FALSE;
             break;
         }
@@ -63,6 +65,7 @@
         NSLog(@"%@",advertisementData);
         [self.bluelist addObject:peripheral];
         [self.advlist addObject:advertisementData];
+        [self.RSSIs addObject:RSSI];
         [self.delegate didDiscoverNewPeripheral:peripheral];
     }
 }

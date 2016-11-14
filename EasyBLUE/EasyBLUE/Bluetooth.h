@@ -30,6 +30,7 @@
 @property (retain,nonatomic) id<BluetoothDelegate> delegate;
 @property (retain,nonatomic) NSMutableArray     *bluelist;
 @property (retain,nonatomic) NSMutableArray     *advlist;
+@property (retain,nonatomic) NSMutableArray     *RSSIs;
 @property (retain,nonatomic) CBCentralManager   *manager;
 @property (retain,nonatomic) CBPeripheral       *slave;
 @property (retain,nonatomic) NSMutableArray     *primaryService;
